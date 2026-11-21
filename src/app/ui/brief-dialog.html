@@ -1,0 +1,125 @@
+<dialog #dialog aria-labelledby="brief-title" (cancel)="cancel($event)" (click)="backdrop($event)">
+  <div class="dialog-inner">
+    <button class="close" type="button" aria-label="Fechar" (click)="close()">
+      <app-icon name="close" />
+    </button>
+    @if (!ready()) {
+      <h2 id="brief-title">Vamos dar forma<br />à sua ideia.</h2>
+      <p>
+        Conte um pouco sobre o seu desafio. No final, você terá um briefing pronto para
+        compartilhar.
+      </p>
+      <form [formGroup]="form" (ngSubmit)="prepare()">
+        <div class="field-row">
+          <div class="field">
+            <label for="brief-name">Seu nome <span aria-hidden="true">*</span></label
+            ><input
+              id="brief-name"
+              aria-required="true"
+              autocomplete="name"
+              formControlName="name"
+              placeholder="Como podemos te chamar?"
+              [attr.aria-invalid]="form.controls.name.touched && form.controls.name.invalid"
+              aria-describedby="name-error"
+            />
+            @if (form.controls.name.touched && form.controls.name.invalid) {
+              <small id="name-error" class="error"
+                >Informe seu nome, com pelo menos 2 caracteres.</small
+              >
+            }
+          </div>
+          <div class="field">
+            <label for="brief-email">E-mail <span aria-hidden="true">*</span></label
+            ><input
+              id="brief-email"
+              aria-required="true"
+              type="email"
+              autocomplete="email"
+              formControlName="email"
+              placeholder="voce@empresa.com.br"
+              [attr.aria-invalid]="form.controls.email.touched && form.controls.email.invalid"
+              aria-describedby="email-error"
+            />
+            @if (form.controls.email.touched && form.controls.email.invalid) {
+              <small id="email-error" class="error">Informe um e-mail válido.</small>
+            }
+          </div>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label for="brief-company">Sua empresa <span class="optional">(opcional)</span></label
+            ><input
+              id="brief-company"
+              autocomplete="organization"
+              formControlName="company"
+              placeholder="Nome da empresa"
+            />
+          </div>
+          <div class="field">
+            <label for="brief-service">O que você precisa?</label
+            ><select id="brief-service" formControlName="service">
+              <option>Ainda quero descobrir</option>
+              <option>Sites e landing pages</option>
+              <option>Software e aplicativos</option>
+              <option>Dados e Business Intelligence</option>
+              <option>IA e chatbots</option>
+              <option>Automações e integrações</option>
+            </select>
+          </div>
+        </div>
+        <div class="field">
+          <label for="brief-message"
+            >Qual desafio vamos resolver? <span aria-hidden="true">*</span></label
+          ><textarea
+            id="brief-message"
+            aria-required="true"
+            rows="3"
+            formControlName="message"
+            placeholder="Hoje fazemos assim... e queremos chegar aqui."
+            [attr.aria-invalid]="form.controls.message.touched && form.controls.message.invalid"
+            aria-describedby="message-error"
+          ></textarea>
+          @if (form.controls.message.touched && form.controls.message.invalid) {
+            <small id="message-error" class="error"
+              >Conte um pouco mais, com pelo menos 15 caracteres.</small
+            >
+          }
+        </div>
+        <button class="submit" type="submit">
+          Preparar meu briefing <app-icon name="check" />
+        </button>
+        <small class="privacy-note"
+          ><app-icon name="shield" /> Seus dados ficam neste dispositivo. Nada é enviado
+          automaticamente.</small
+        >
+      </form>
+    } @else {
+      <div class="success-icon"><app-icon name="check" /></div>
+      <h2 id="brief-title" class="result-title" tabindex="-1">
+        Sua ideia ganhou<br />um ponto de partida.
+      </h2>
+      <p>Seu briefing está pronto. Baixe ou copie o resumo para compartilhar quando quiser.</p>
+      <pre tabindex="0" aria-label="Resumo do seu projeto">{{ brief() }}</pre>
+      <div class="result-actions">
+        <button class="submit" type="button" (click)="download()">
+          <app-icon name="download" /> Baixar briefing</button
+        ><button class="copy" type="button" (click)="copy()">
+          <app-icon name="copy" /> {{ copied() ? 'Copiado!' : 'Copiar texto' }}
+        </button>
+      </div>
+      @if (email) {
+        <a class="email-link" [href]="mailLink()">Compartilhar com a Nexo por e-mail</a>
+      }
+      <p class="result-status" role="status">
+        {{
+          copyError()
+            ? 'A cópia não está disponível neste navegador. Use Baixar briefing.'
+            : copied()
+              ? 'Texto copiado para a área de transferência.'
+              : 'Nenhum dado foi enviado. O arquivo está pronto para você.'
+        }}
+      </p>
+      <button class="edit" type="button" (click)="ready.set(false)">Editar informações</button>
+    }
+  </div>
+</dialog>

@@ -1,0 +1,111 @@
+<a class="skip" href="#conteudo">Pular para o conteúdo</a>
+<header class="header">
+  <div class="header-inner wrap">
+    <a href="#inicio" class="brand" aria-label="Nexo, início">nexo<span class="brand-symbol" aria-hidden="true"><i></i><i></i></span></a>
+    <button class="menu-toggle" aria-controls="main-nav" [attr.aria-expanded]="menuOpen()" [attr.aria-label]="menuOpen() ? 'Fechar menu' : 'Abrir menu'" (click)="menuOpen.set(!menuOpen())"><app-icon [name]="menuOpen() ? 'close' : 'menu'" /></button>
+    <nav id="main-nav" aria-label="Navegação principal" [class.open]="menuOpen()">
+      <a href="#solucoes" (click)="menuOpen.set(false)">O que fazemos</a>
+      <a href="#na-pratica" (click)="menuOpen.set(false)">Na prática</a>
+      <a href="#sobre" (click)="menuOpen.set(false)">Quem conecta</a>
+      <button class="button compact nav-cta" data-brief-trigger (click)="start()">Começar um projeto <app-icon name="plus" /></button>
+    </nav>
+  </div>
+</header>
+<main id="conteudo">
+  <section class="hero wrap" id="inicio">
+    <h1>O seu negócio.<br /><span>Mais conectado.</span></h1>
+    <div class="hero-bottom">
+      <div class="hero-copy">
+        <p>Entre uma boa ideia e uma operação melhor, existe a tecnologia certa.</p>
+        <p class="hero-description">Criamos sites, software, soluções de dados, IA e automações para pequenas e médias empresas.</p>
+        <button class="button" (click)="start()">Dar forma ao meu projeto <app-icon name="plus" /></button>
+        <span class="hero-note">Do seu desafio a um escopo claro.</span>
+      </div>
+      <div class="hero-art" role="img" aria-label="Trama de linhas magenta e pretas conectando presença digital, operação e inteligência">
+        <svg class="signal-loom" viewBox="0 0 620 370" fill="none" aria-hidden="true">
+          <g class="loom-ink">
+            @for (wire of wires; track $index) { <path [attr.d]="wire.second" /> }
+          </g>
+          <g class="loom-magenta">
+            @for (wire of wires; track $index) { <path [attr.d]="wire.first" /> }
+          </g>
+          <path class="loom-terminal" d="M7 77h12v84H7z M7 217h12v84H7z M598 89h12v84h-12z M598 243h12v60h-12z" />
+        </svg>
+        <span class="loom-label label-one">Presença digital</span><span class="loom-label label-two">Operação</span><span class="loom-label label-three">Inteligência</span>
+        <span class="loom-caption">Partes diferentes. Um novo nexo.</span>
+      </div>
+    </div>
+    <div class="hero-baseline"><span>Construção digital, de ponta a ponta.</span><span>Brasil · 100% remoto</span></div>
+  </section>
+
+  <section class="services section wrap" id="solucoes">
+    <div class="section-intro">
+      <h2>Um ponto de partida.<br /><span>Muitas possibilidades.</span></h2>
+      <p>Você pode precisar de uma página ou de um sistema inteiro. Começamos pelo que faz sentido agora.</p>
+    </div>
+    <div class="service-explorer">
+      <div class="service-options" role="group" aria-label="Explore nossas soluções">
+        @for (service of services; track service.name; let i = $index) {
+          <button [class.active]="selectedService() === i" [attr.aria-pressed]="selectedService() === i" aria-controls="service-detail" (click)="selectedService.set(i)"><span>{{ service.name }}</span><app-icon [name]="selectedService() === i ? 'check' : 'plus'" /></button>
+        }
+      </div>
+      <div id="service-detail" class="service-detail" aria-live="polite">
+        <div class="service-diagram" aria-hidden="true"><span>{{ currentService().input }}</span><i></i><app-icon [name]="currentService().icon" /><i></i><span>{{ currentService().output }}</span></div>
+        <h3>{{ currentService().title }}</h3>
+        <p>{{ currentService().description }}</p>
+        <ul class="deliverables">@for (item of currentService().deliverables; track $index) { <li><app-icon name="check" />{{ item }}</li> }</ul>
+        <div class="service-bottom"><span>{{ currentService().cue }}</span><button class="text-action" (click)="start(currentService().service)">Começar por aqui <app-icon name="plus" /></button></div>
+      </div>
+    </div>
+    <p class="service-footnote">Soluções independentes. Conectadas quando o seu negócio precisar.</p>
+  </section>
+
+  <section class="demo-section" id="na-pratica">
+    <div class="wrap section">
+      <div class="demo-heading"><h2>Quando as pontas<br />se encontram.</h2><p>Imagine uma empresa que recebe pedidos de orçamento pelo site. A tecnologia pode ajudar a informação a seguir seu caminho.</p></div>
+      <div class="demo-toolbar"><span class="demo-label"><span aria-hidden="true"></span>Exemplo ilustrativo · sem dados reais</span><button class="demo-switch" (click)="connected.set(!connected())" [attr.aria-pressed]="connected()">{{ connected() ? 'Voltar ao fluxo manual' : 'Ver fluxo conectado' }}<app-icon [name]="connected() ? 'close' : 'plus'" /></button></div>
+      <div class="operation-demo" [class.is-connected]="connected()">
+        <div class="request-slip"><span class="slip-title"><app-icon name="globe" />No site da empresa</span><h3>Uma nova<br />solicitação.</h3><dl><div><dt>Assunto</dt><dd>Pedido de orçamento</dd></div><div><dt>Interesse</dt><dd>Serviço da empresa</dd></div></dl><span class="request-status"><span aria-hidden="true"></span>Formulário recebido</span></div>
+        <div class="routing" aria-hidden="true"><svg viewBox="0 0 190 300" preserveAspectRatio="none" fill="none"><path d="M0 150H52Q76 150 76 126V46Q76 26 100 26H190 M76 150H190 M76 150V254Q76 274 100 274H190" /></svg><span><app-icon [name]="connected() ? 'flow' : 'copy'" /></span></div>
+        <div class="demo-destinations">
+          <article><div class="destination-icon"><app-icon name="database" /></div><div><h4>Registro</h4><p>{{ connected() ? 'Informações organizadas no sistema.' : 'Alguém copia os dados para uma planilha.' }}</p></div><span class="destination-state"><app-icon [name]="connected() ? 'check' : 'clock'" /></span></article>
+          <article><div class="destination-icon"><app-icon name="message" /></div><div><h4>Atendimento</h4><p>{{ connected() ? 'A equipe recebe o contexto para continuar.' : 'Outra pessoa repassa o pedido à equipe.' }}</p></div><span class="destination-state"><app-icon [name]="connected() ? 'check' : 'clock'" /></span></article>
+          <article><div class="destination-icon"><app-icon name="chart" /></div><div><h4>Análise</h4><p>{{ connected() ? 'O pedido compõe uma visão de demanda.' : 'Os pedidos precisam ser reunidos depois.' }}</p></div><span class="destination-state"><app-icon [name]="connected() ? 'check' : 'clock'" /></span></article>
+        </div>
+      </div>
+      <div class="demo-caption" aria-live="polite"><strong>{{ connected() ? 'Uma entrada. Informações conectadas.' : 'A informação chega. O trabalho de repassar também.' }}</strong><p>{{ connected() ? 'Site + integração + dados. Uma combinação possível, com regras, permissões e ferramentas avaliadas em cada projeto.' : 'Explore o fluxo conectado para visualizar como site, integração e dados podem trabalhar juntos.' }}</p></div>
+    </div>
+  </section>
+
+  <section class="process section wrap" id="como-trabalhamos">
+    <div class="section-intro"><h2>Antes do código,<br /><span>uma boa conversa.</span></h2><p>Um projeto avança melhor quando todo mundo sabe o que está construindo e por quê.</p></div>
+    <div class="process-steps">
+      <article><span class="process-symbol" aria-hidden="true"><app-icon name="search" /></span><h3>Entender</h3><p>Ouvimos o desafio, a rotina e o que precisa mudar. Traduzimos isso em um objetivo de projeto.</p></article>
+      <article><span class="process-symbol" aria-hidden="true"><app-icon name="layers" /></span><h3>Definir</h3><p>Alinhamos entregas, limites, responsabilidades e critérios de validação antes de desenvolver.</p></article>
+      <article><span class="process-symbol" aria-hidden="true"><app-icon name="code" /></span><h3>Construir</h3><p>Desenvolvemos com acompanhamento e comunicação objetiva sobre as decisões do projeto.</p></article>
+      <article><span class="process-symbol" aria-hidden="true"><app-icon name="check" /></span><h3>Validar</h3><p>Conferimos o que foi combinado, organizamos a entrega e os próximos passos possíveis.</p></article>
+    </div>
+  </section>
+
+  <section class="team-section" id="sobre">
+    <div class="wrap team-inner">
+      <div class="team-copy"><h2>Tecnologia tem<br />pessoas nas pontas.</h2><p>A Nexo nasce da união de quatro amigos, com competências técnicas e visões de negócio que se complementam.</p><p>Na construção das soluções, dados e desenvolvimento trabalham lado a lado. Os outros integrantes apoiam a estruturação do negócio.</p><span class="team-location"><app-icon name="globe" />Um time remoto. Conectado ao seu contexto.</span></div>
+      <div class="people"><article><div class="person-monogram" aria-hidden="true">Gj<span></span></div><div><h3>Gleidson Júnior</h3><p>Dados, BI e inteligência artificial</p><span>Analista de dados sênior, com atuação em analytics, engenharia e ciência de dados.</span></div></article><article><div class="person-monogram alternate" aria-hidden="true">Pa<span></span></div><div><h3>Paulo Augusto</h3><p>Software e desenvolvimento</p><span>Sites, aplicativos, chatbots e automações, com Java no backend e Angular no frontend.</span></div></article></div>
+    </div>
+  </section>
+
+  <section class="faq section wrap" id="duvidas">
+    <h2>Vamos deixar<br /><span>tudo claro.</span></h2>
+    <div class="faq-list">@for (faq of faqs; track faq.question) { <details><summary>{{ faq.question }}<span class="faq-sign" aria-hidden="true"><app-icon name="plus" /></span></summary><p>{{ faq.answer }}</p></details> }</div>
+  </section>
+
+  <section class="final-cta wrap">
+    <div class="cta-heading"><span class="cta-knot" aria-hidden="true"><i></i><i></i></span><h2>O próximo nexo<br />começa com você.</h2></div>
+    <div class="cta-bottom"><p>Conte o que precisa mudar.<br />Começamos por esse ponto.</p><div><button class="button" (click)="start()">Preparar meu briefing <app-icon name="plus" /></button><span>Um resumo seu. Pronto para o próximo passo.</span></div></div>
+  </section>
+</main>
+<footer class="footer wrap">
+  <div class="footer-top"><a href="#inicio" class="brand" aria-label="Nexo, voltar ao início">nexo<span class="brand-symbol" aria-hidden="true"><i></i><i></i></span></a><p>Tecnologia que faz<br />as pontas se encontrarem.</p><div><a href="#solucoes">Soluções</a><a href="#sobre">Pessoas</a><a href="#duvidas">Dúvidas</a></div><a href="#inicio" class="back-top">Voltar ao início <app-icon name="plus" /></a></div>
+  <div class="footer-bottom"><span>© {{ year }} Nexo · Nome provisório</span><span>Brasil · Atendimento 100% remoto</span><details><summary>Privacidade</summary><p>Sem rastreadores. O briefing é preparado no seu navegador, sem envio automático de dados.</p></details></div>
+</footer>
+<app-brief-dialog />

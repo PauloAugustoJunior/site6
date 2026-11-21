@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-20T14:41:00Z",
+  "title": "Nexo — proposta 6",
+  "extensions": {
+    "colorMeta": {
+      "cyclamen": { "role": "primary", "displayName": "Magenta ciclamen" },
+      "ink": { "role": "neutral", "displayName": "Tinta" },
+      "paper": { "role": "neutral", "displayName": "Branco de estúdio" },
+      "soft": { "role": "neutral", "displayName": "Superfície de apoio" }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Bricolage Grotesque", "purpose": "Títulos expressivos e marca" },
+      "body": { "displayName": "Manrope", "purpose": "Corpo e interface" }
+    },
+    "shadows": [
+      { "name": "dialog", "value": "0 32px 100px #0003", "purpose": "Elevação do briefing" },
+      { "name": "mobile-nav", "value": "0 18px 26px #2010180d", "purpose": "Separação da navegação móvel aberta" }
+    ],
+    "motion": [
+      { "name": "control", "value": "0.2s ease", "purpose": "Hover e abertura dos sinais de FAQ" },
+      { "name": "connection", "value": "0.35s ease", "purpose": "Traços do fluxo demonstrativo; cores de texto e fundo mudam sem interpolação" }
+    ],
+    "breakpoints": [
+      { "name": "compact-desktop", "value": "1100px" },
+      { "name": "tablet", "value": "850px" },
+      { "name": "mobile", "value": "620px" },
+      { "name": "small-mobile", "value": "359px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Ação principal",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Ação sólida com adição geométrica.",
+      "html": "<button class=\"nexo-action\">Preparar meu briefing <svg viewBox=\"0 0 24 24\" width=\"20\" height=\"20\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" aria-hidden=\"true\"><path d=\"M12 5v14M5 12h14\"/></svg></button>",
+      "css": ".nexo-action{display:inline-flex;align-items:center;gap:22px;background:#202020;color:#fff;font-family:Manrope,Arial,sans-serif;font-size:15px;font-weight:650;padding:16px 24px;border:1px solid #202020;min-height:56px;cursor:pointer;transition:background .2s,border-color .2s}.nexo-action:hover{background:#bd0062;border-color:#bd0062}.nexo-action:focus-visible{outline:3px solid #bd0062;outline-offset:5px}"
+    }
+  ],
+  "narrative": {
+    "northStar": "Trama de sinais",
+    "overview": "Direção editorial clara e expressiva, com geometria precisa. Branco, tinta e magenta conectam texto objetivo a uma trama vetorial autoral.",
+    "keyCharacteristics": ["Tipo assimétrico", "Arte vetorial própria", "Superfícies amplas", "Exemplo reversível"],
+    "rules": [],
+    "dos": ["Usar fontes locais", "Manter exemplos explicitamente ilustrativos", "Preservar foco contrastante"],
+    "donts": ["Não inventar prova social", "Não adicionar movimentos contínuos", "Não transformar serviços em grade de cartões"]
+  }
+}
