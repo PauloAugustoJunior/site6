@@ -11,7 +11,7 @@ npm ci
 npm start
 ```
 
-Abrir **http://localhost:4206**. O projeto não foi publicado.
+Abrir **http://localhost:4206**.
 
 ```bash
 npm run build
@@ -41,3 +41,15 @@ O sistema construído e a avaliação estão em [DESIGN.md](DESIGN.md). O contra
 ## Verificação final
 
 Build de produção aprovado: 327,18 kB iniciais (86,11 kB estimados em transferência). Cinco testes unitários aprovados. A revisão no navegador registrou cinco auditorias AXE sem violações; seleção de serviço, demonstração reversível e briefing com erro/validação, cópia, download e Escape funcionam. Sem overflow de 320 a 1024px nas seis larguras verificadas, erros de execução ou falhas de rede. Capturas comparativas e relatório estão na pasta `../previews`.
+
+## Publicação no GitHub Pages
+
+Endereço após a publicação: https://PauloAugustoJunior.github.io/site6/
+
+1. No repositório `site6` no GitHub, abra **Settings → Pages** e selecione **GitHub Actions** em **Build and deployment → Source**. Essa configuração é feita uma única vez.
+2. Envie os commits para `main`. No Windows, o arquivo `push-sites.cmd`, na pasta que contém os seis sites, faz os pushes em sequência.
+3. Acompanhe a publicação na aba **Actions**, no workflow **Publicar no GitHub Pages**.
+
+O arquivo [.github/workflows/pages.yml](.github/workflows/pages.yml) instala as dependências, gera o build de produção com a base correta e publica automaticamente a cada push em `main`. Não é necessário instalar GitHub CLI, criar token pessoal ou compilar no Windows. Também é possível iniciar uma publicação em **Actions → Publicar no GitHub Pages → Run workflow**.
+
+No plano GitHub Free, o repositório precisa ser público para usar Pages. Referência: [documentação do GitHub Pages](https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site).

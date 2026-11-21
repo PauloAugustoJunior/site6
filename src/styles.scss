@@ -1,6 +1,6 @@
 @use './site';
-@font-face { font-family: Bricolage; src: url('/fonts/bricolage.ttf') format('truetype'); font-weight: 200 800; font-style: normal; font-display: swap; }
-@font-face { font-family: Manrope; src: url('/fonts/manrope.ttf') format('truetype'); font-weight: 200 800; font-style: normal; font-display: swap; }
+@font-face { font-family: Bricolage; src: url('fonts/bricolage.ttf') format('truetype'); font-weight: 200 800; font-style: normal; font-display: swap; }
+@font-face { font-family: Manrope; src: url('fonts/manrope.ttf') format('truetype'); font-weight: 200 800; font-style: normal; font-display: swap; }
 :root { --accent: #bd0062; --ink: #202020; --muted: #65615f; --paper: #fff; --soft: #f4f2f3; --line: #ddd8db; --heading-font: Bricolage, Arial, sans-serif; --button-ink: #fff; color: var(--ink); background: var(--paper); font-family: Manrope, Arial, sans-serif; font-synthesis: none; font-size: 16px; }
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; scroll-padding-top: 100px; scrollbar-color: #bd0062 #f4f2f3; }
